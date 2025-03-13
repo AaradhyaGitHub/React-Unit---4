@@ -4,8 +4,8 @@ import {
   createRoutesFromElements,
   Route
 } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import Products from "./components/Products";
+import HomePage from "./pages/HomePage";
+import Products from "./pages/Products";
 
 {
   /*
