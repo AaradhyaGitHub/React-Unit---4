@@ -8,7 +8,7 @@ import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
 import ErrorPage from "./pages/Error";
 import RootLayout from "./pages/Root";
-
+import ProductDetail from "./pages/ProductDetail";
 
 {
   /*
@@ -28,10 +28,13 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    errorElement: <ErrorPage /> ,
+    errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <HomePage /> },
-      { path: "/products", element: <Products /> }
+      { path: "/products", element: <Products /> },
+      // the /: tells react, the value after will be dynamic
+      //        you could have more value after that like /products/:productId/new
+      { path: "/products/:productId", element: <ProductDetail /> }
     ]
   }
 ]);
