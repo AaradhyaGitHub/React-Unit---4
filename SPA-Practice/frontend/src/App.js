@@ -2,11 +2,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import EventsPage from "../src/pages/EventsPage";
 import EventDetailPage from "../src/pages/EventDetailPage";
 import NewEventPage from "../src/pages/NewEventPage";
-import EventsPage from "../src/pages/EventsPage";
+import RootLayout from "./pages/RootLayout";
+import HomePage from "./pages/Homepage"
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <RootLayout/>,
     children: [
+      { index: true, path: "", element: <HomePage /> },
       { path: "/events", element: <EventsPage /> },
       { path: "/events/:pId", element: <EventDetailPage /> },
       { path: "/events/new", element: <NewEventPage /> },
@@ -28,8 +31,12 @@ const router = createBrowserRouter([
 //    - /events/<some-id> => EventDetailPage
 //    - /events/new => NewEventPage
 //    - /events/<some-id>/edit => EditEventPage
+
+
+
 // 3. Add a root layout that adds the <MainNavigation> component above all page components
 // 4. Add properly working links to the MainNavigation
+
 // 5. Ensure that the links in MainNavigation receive an "active" class when active
 // 6. Output a list of dummy events to the EventsPage
 //    Every list item should include a link to the respective EventDetailPage
