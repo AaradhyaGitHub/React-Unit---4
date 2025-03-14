@@ -24,17 +24,20 @@ import ProductDetail from "./pages/ProductDetail";
 */
 }
 
+// if it starts with a slash(/), it's an absolute path 
+// 
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", element: <HomePage /> },
-      { path: "/products", element: <Products /> },
+      { path: "", element: <HomePage /> },
+      { path: "products", element: <Products /> },
       // the /: tells react, the value after will be dynamic
       //        you could have more value after that like /products/:productId/new
-      { path: "/products/:productId", element: <ProductDetail /> }
+      { path: "products/:productId", element: <ProductDetail /> }
     ]
   }
 ]);
