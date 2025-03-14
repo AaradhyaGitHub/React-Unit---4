@@ -1,6 +1,19 @@
-import {}
-
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import EventsPage from "../src/pages/EventsPage";
+import EventDetailPage from "../src/pages/EventDetailPage";
+import NewEventPage from "../src/pages/NewEventPage";
+import EventsPage from "../src/pages/EventsPage";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    children: [
+      { path: "/events", element: <EventsPage /> },
+      { path: "/events/:pId", element: <EventDetailPage /> },
+      { path: "/events/new", element: <NewEventPage /> },
+      { path: "/events/:pId/edit", element: <EventsPage /> }
+    ]
+  }
+]);
 // Challenge / Exercise
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
@@ -26,8 +39,9 @@ import {}
 function App() {
   return (
     <>
+      <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
 export default App;
