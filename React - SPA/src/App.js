@@ -33,7 +33,8 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "", element: <HomePage /> },
+      //index: true makes this the default route if the parent route i.e / is active 
+      {index:true, path: "", element: <HomePage /> },
       { path: "products", element: <Products /> },
       // the /: tells react, the value after will be dynamic
       //        you could have more value after that like /products/:productId/new
