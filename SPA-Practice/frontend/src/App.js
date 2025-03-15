@@ -15,7 +15,22 @@ const router = createBrowserRouter([
         path: "events",
         element: <EventsRouteLayout />,
         children: [
-          { index: true, path: "", element: <EventsPage /> },
+          {
+            index: true,
+            path: "",
+            element: <EventsPage />,
+            loader: async () => {
+              const response = await fetch("http://localhost:8080/events");
+
+              if (!response.ok) {
+              } else {
+                const resData = await response.json();
+                return resData.events;
+                // this returned data is automatically available in Events page
+                // it's available in other components too
+              }
+            }
+          },
           { path: ":eventId", element: <EventDetailPage /> },
           { path: "new", element: <NewEventPage /> },
           { path: ":eventId/edit", element: <EventsPage /> }
