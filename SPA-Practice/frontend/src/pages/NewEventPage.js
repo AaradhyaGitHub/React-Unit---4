@@ -1,5 +1,5 @@
 import EventForm from "../components/EventForm";
-
+import { redirect } from "react-router-dom";
 export default function NewEventPage() {
   return (
     <>
@@ -14,7 +14,7 @@ export async function action({ request }) {
     title: data.get("title"),
     image: data.get("image"),
     date: data.get("date"),
-    description: data.get("description"), // Fixed missing key
+    description: data.get("description") // Fixed missing key
   };
 
   const response = await fetch("http://localhost:8080/events", {
@@ -26,11 +26,10 @@ export async function action({ request }) {
   });
 
   if (!response.ok) {
-    throw new Response(
-      JSON.stringify({ message: "Could not set event" }),
-      { status: 500 }
-    );
+    throw new Response(JSON.stringify({ message: "Could not set event" }), {
+      status: 500
+    });
   }
 
-  return response; // ✅ Ensure React Router knows the request outcome
+  return redirect("/events");
 }
