@@ -14,7 +14,7 @@ function EventsNavigation() {
               }
               end
             >
-              All Events
+              👁️ All Events
             </NavLink>
           </li>
           <li>
@@ -24,7 +24,7 @@ function EventsNavigation() {
                 isActive ? classes.actove : undefined
               }
             >
-              New Event
+              + New Event
             </NavLink>
           </li>
         </ul>
