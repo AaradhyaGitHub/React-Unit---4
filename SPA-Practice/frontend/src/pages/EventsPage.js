@@ -18,7 +18,7 @@ function EventsPage() {
 
 export default EventsPage;
 
-async function laodEvents() {
+async function loadEvents() {
   const response = await fetch("http://localhost:8080/events");
 
   if (!response.ok) {
@@ -44,6 +44,6 @@ async function laodEvents() {
 
 export function loader() {
   return {
-    events: laodEvents()
+    events: loadEvents()
   };
 }
