@@ -66,7 +66,7 @@ export async function loader({ request, params }) {
   const id = params.eventId;
 
   return {
-    event: loadEvent(id),
+    event: await loadEvent(id),
     events: loadEvents()
   };
 }
