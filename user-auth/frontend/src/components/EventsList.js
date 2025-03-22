@@ -26,4 +26,5 @@ function EventsList({events}) {
   );
 }
 
+
 export default EventsList;
