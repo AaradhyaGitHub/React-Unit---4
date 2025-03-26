@@ -83,3 +83,5 @@ export default function EventForm({ inputData, onSubmit, children }) {
     </form>
   );
 }
+
+
