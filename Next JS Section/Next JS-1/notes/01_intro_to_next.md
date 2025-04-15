@@ -86,3 +86,12 @@ export default function RootLayout({ children }) {
 }
 ```
 --- How to organize a NextJS Project --- 
+
+- There are other files here like the globals.css which is imported to the root layout.js 
+- We have icon.png which is also reserved. This will act as a favicon by Next.js
+- We don't have an icon in Layout but since we have icon.png in the directory, we still have a favicon 
+- This goes to show the importance of the App diretory when working with Next.js project 
+- But we're not limited. 
+- For instance you can create your own header.js (could also be named Header.jsx) which will act as a regular vanilla 
+  React.js component 
+- 
