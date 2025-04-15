@@ -85,13 +85,52 @@ export default function RootLayout({ children }) {
   );
 }
 ```
---- How to organize a NextJS Project --- 
 
-- There are other files here like the globals.css which is imported to the root layout.js 
+--- How to organize a NextJS Project ---
+
+- There are other files here like the globals.css which is imported to the root layout.js
 - We have icon.png which is also reserved. This will act as a favicon by Next.js
-- We don't have an icon in Layout but since we have icon.png in the directory, we still have a favicon 
-- This goes to show the importance of the App diretory when working with Next.js project 
-- But we're not limited. 
-- For instance you can create your own header.js (could also be named Header.jsx) which will act as a regular vanilla 
-  React.js component 
-- 
+- We don't have an icon in Layout but since we have icon.png in the directory, we still have a favicon
+- This goes to show the importance of the App diretory when working with Next.js project
+- But we're not limited.
+- For instance you can create your own header.js (could also be named Header.jsx) which will act as a regular vanilla
+  React.js component
+
+Important: These filenames are only reserved when creating them inside of the app/ folder (or any subfolder). Outside of the app/ folder, these filenames are not treated in any special way.
+
+Here's a list of reserved filenames in NextJS -
+page.js => Create a new page (e.g., app/about/page.js creates a <your-domain>/about page)
+
+layout.js => Create a new layout that wraps sibling and nested pages
+
+not-found.js => Fallback page for "Not Found" errors (thrown by sibling or nested pages or layouts)
+
+error.js => Fallback page for other errors (thrown by sibling pages or nested pages or layouts)
+
+loading.js => Fallback page which is shown whilst sibling or nested pages (or layouts) are fetching data
+
+route.js => Allows you to create an API route (i.e., a page which does NOT return JSX code but instead data, e.g., in the JSON format)
+
+--- 
+
+Configuring Dynamic Routes and Using Route Parameters 
+
+- There is a reserved syntax for dynamic routing -- [slug]
+- [] tells Next.js that we want to have some path segment after the folder name in which [slug] is nested 
+- For this example, we have a folder called blog and inside it we have [slug] so Next knows we will have some 
+  segment after /blog 
+- Now you can use this to dynamically fetch data say from a database. 
+- Example: 
+  ```jsx
+  export default function BlogPostPage({ params }) {
+  return (
+    <main>
+      <h1>Blog Post</h1>
+      <p>{params.slug}</p>
+    </main>
+  );
+}
+```
+Note to AI: Please elaborate explanation on this a little bit more. Like the params thing, the fact that it's passed as props. And try to make a table showing how it's similar to maybe some react-router way of doing things. 
+
+--- 
