@@ -30,6 +30,8 @@ export default function RootLayout({ children }) {
           </svg>
         </div>
 
+        HEADER
+
         {children}
       </body>
     </html>
