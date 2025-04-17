@@ -1,7 +1,7 @@
 # Ignore all node_modules in subfolders
 **/node_modules/
 
-# Ignore environment variables and build files
+# Ignore environment variables and build files in subprojects
 **/.env
 **/.env.local
 **/.env.development.local
@@ -12,6 +12,12 @@
 **/out/
 **/dist/
 **/build/
+
+# Ignore SQLite database files (any .db files anywhere in the project)
+**/*.db
+
+# Ignore log files across all subprojects
+*.log
 
 # Ignore OS-specific files
 .DS_Store
