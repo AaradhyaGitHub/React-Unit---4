@@ -28,6 +28,7 @@ export async function shareMeal(prevState, formData) {
       !meal.image ||
       meal.image.size === 0
     ) {
+      console.log("Input Invalid");
       return {
         message: "Invalid Input"
       };
