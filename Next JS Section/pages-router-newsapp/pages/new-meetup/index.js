@@ -1,6 +1,6 @@
 import NewMeetupForm from "@/components/meetups/NewMeetupForm";
 
-function NewMeetupPage() {
+export default function NewMeetupPage() {
   function addMeetupHandler() {}
   return (
     <>
@@ -8,5 +8,3 @@ function NewMeetupPage() {
     </>
   );
 }
-
-\
