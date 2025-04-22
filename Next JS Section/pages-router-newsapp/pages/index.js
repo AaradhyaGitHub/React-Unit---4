@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
-
 const DUMMY_MEETUPS = [
   {
     id: "m1",
@@ -19,10 +19,14 @@ const DUMMY_MEETUPS = [
   }
 ];
 export default function HomePage() {
+  const [loadedMeetups, setLoadedMeetups] = useState([]);
+  useEffect(() => {
+    setLoadedMeetups(DUMMY_MEETUPS);
+  }, []);
   return (
     <>
-\        <MeetupList meetups={DUMMY_MEETUPS} />
+      <MeetupList meetups={loadedMeetups} />
     </>
   );
 }
-3
+3;
