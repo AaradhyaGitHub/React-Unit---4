@@ -1,5 +1,5 @@
 import MeetupDetail from "@/components/meetups/MeetupDetail";
-export default function MeetupDetails() {
+function MeetupDetails() {
   return (
     <>
       <MeetupDetail
@@ -11,3 +11,21 @@ export default function MeetupDetails() {
     </>
   );
 }
+
+export async function getStaticProps(context) {
+  const meetupId = context.params;
+
+  return {
+    props: {
+      meetupDate: {
+        image:
+          "https://theinsatiabletraveler.com/wp-content/uploads/2016/02/Cuba-Photography-Havana-584902.jpg",
+        id: meetupId,
+        title: "First Meetup",
+        address: "123 Romero Yoel St, Havana, Cuba"
+      }
+    }
+  };
+}
+
+export default MeetupDetails();
