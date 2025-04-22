@@ -22,3 +22,7 @@
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
+
+#Ignore this heavy react form
+**/meetup.js
+
