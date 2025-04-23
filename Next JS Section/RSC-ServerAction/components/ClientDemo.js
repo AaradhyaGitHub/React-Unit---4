@@ -1,14 +1,12 @@
-export default async function RSCDemo() {
-  console.log("RSCDemo rendered");
+export default function ClientDemo({ children }) {
+  console.log("ClientDemo rendered");
   return (
-    <div className="rsc">
-      <h2>A React Server Component</h2>
+    <div className="client-cmp">
+      <h2>A React Client Component</h2>
       <p>
-        Will <strong>ONLY</strong> be rendered on the server or at build time.
+        Will be rendered on the client <strong>AND</strong> the server.
       </p>
-      <p>
-        <strong>NEVER</strong> on the client-side!
-      </p>
+      {children}
     </div>
   );
 }
