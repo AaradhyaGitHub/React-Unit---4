@@ -23,4 +23,43 @@ Why convert it to Client Component?
 - Mostly to use Client-side features 
 
 
+--- 
+
+Combining RSC and Client Components 
+
+- RSC can directly include CSC in their JSX 
+- CSC cannot directly include RSC in their code 
+- CSC CAN include RSC as children in their code 
+
+
+For example you take a client component 
+```jsx
+'use client'
+export default function ClientDemo({ children }) {
+  console.log("ClientDemo rendered");
+  return (
+    <div className="client-cmp">
+      <h2>A React Client Component</h2>
+      <p>
+        Will be rendered on the client <strong>AND</strong> the server.
+      </p>
+      {children}
+    </div>
+  );
+}
+```
+and then you wrap it around a server component in the pages.js page like:
+```jsx
+export default function Home() {
+  return (
+    <main>
+      <ClientDemo>
+        <RSCDemo />
+      </ClientDemo>
+    </main>
+  );
+}
+```
+
+
 
