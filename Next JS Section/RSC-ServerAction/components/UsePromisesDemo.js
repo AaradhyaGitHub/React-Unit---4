@@ -1,16 +1,22 @@
-import fs from "node:fs/promises";
+"use client";
+import { use, useState } from "react";
 
-export default async function UsePromiseDemo() {
-  //simulating 2 sec data fetching time delay
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+export default function UsePromiseDemo({ usersPromise }) {
+  const [count, setCount] = useState(0);
+  // The use hook unwraps the promise and integrates with Suspense
+  const users = use(usersPromise);
 
-  const data = await fs.readFile("dummy-db.json", "utf-8");
-  const users = JSON.parse(data);
   return (
     <div className="rsc">
-      <h2>RSC with Data Fetching</h2>
+      <h2>Client Component with Server Data</h2>
       <p>
-        Uses <strong>async / await</strong> for data fetching.
+        Uses the <strong>use()</strong> hook to handle promises from the server.
+      </p>
+      <p>
+        <button onClick={() => setCount((prevCount) => prevCount + 1)}>
+          Increment
+        </button>
+        <span> Count: {count}</span>
       </p>
       <ul>
         {users.map((user) => (

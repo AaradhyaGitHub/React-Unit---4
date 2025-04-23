@@ -1,30 +1,25 @@
-import ClientDemo from "@/components/ClientDemo";
-import DataFetchingDemo from "@/components/DataFetchingDemo";
-import RSCDemo from "@/components/RSCDemo";
-import ServerActionsDemo from "@/components/ServerActionsDemo";
 import UsePromiseDemo from "@/components/UsePromisesDemo";
 import { Suspense } from "react";
+import fs from "node:fs/promises";
 
 export default async function Home() {
-  //simulating 2 sec data fetching time delay
-  //await new Promise((resolve) => setTimeout(resolve, 2000));
+  // Create the promise on the server
+  const usersPromise = new Promise(async (resolve) => {
+    // Simulate delay
+    await new Promise((r) => setTimeout(r, 2000));
+    
+    // Fetch data
+    const data = await fs.readFile("dummy-db.json", "utf-8");
+    const users = JSON.parse(data);
+    
+    // Resolve with the users data
+    resolve(users);
+  });
 
   return (
     <main>
-      {/* Client, RSC Demo */}
-      <ClientDemo>
-        <RSCDemo />
-      </ClientDemo>
-
-      {/*Data Fetching Demo */}
-      <DataFetchingDemo />
-
-      {/* Server Action Demo */}
-      <ServerActionsDemo />
-
-      {/* use() hook with Promises */}
       <Suspense fallback={<p>Loading users.....</p>}>
-        <UsePromiseDemo />
+        <UsePromiseDemo usersPromise={usersPromise} />
       </Suspense>
     </main>
   );
