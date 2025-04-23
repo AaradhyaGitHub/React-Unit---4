@@ -1,26 +1,24 @@
 import UsePromiseDemo from "@/components/UsePromisesDemo";
 import { Suspense } from "react";
 import fs from "node:fs/promises";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
 export default async function Home() {
   // Create the promise on the server
-  const usersPromise = new Promise(async (resolve) => {
-    // Simulate delay
-    await new Promise((r) => setTimeout(r, 2000));
-    
-    // Fetch data
-    const data = await fs.readFile("dummy-db.json", "utf-8");
-    const users = JSON.parse(data);
-    
-    // Resolve with the users data
-    resolve(users);
-  });
-
+  const fetchUsersPromise = new Promise((resolve, reject) =>
+    setTimeout(async () => {
+      const data = await fs.readFile("dummy-db.json", "utf-8");
+      const users = JSON.parse(data);
+      resolve(users);
+    }, 2000)
+  );
   return (
     <main>
-      <Suspense fallback={<p>Loading users.....</p>}>
-        <UsePromiseDemo usersPromise={usersPromise} />
-      </Suspense>
+      <ErrorBoundary fallback={<p>Something went wrong :(</p>}>
+        <Suspense fallback={<p>Loading users.....</p>}>
+          <UsePromiseDemo usersPromise={fetchUsersPromise} />
+        </Suspense>
+      </ErrorBoundary>
     </main>
   );
 }
