@@ -282,7 +282,6 @@ main {
   margin-left: 0.25rem;
 }
 
-
 .challenge-item-description {
   margin: 0;
 }
@@ -355,8 +354,8 @@ main {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 .badge {

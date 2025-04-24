@@ -1,8 +1,9 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
-import { ChallengesContext } from '../store/challenges-context.jsx';
-import Modal from './Modal.jsx';
-import images from '../assets/images.js';
+import { ChallengesContext } from "../store/challenges-context.jsx";
+import Modal from "./Modal.jsx";
+import images from "../assets/images.js";
 
 export default function NewChallenge({ onDone }) {
   const title = useRef();
@@ -22,7 +23,7 @@ export default function NewChallenge({ onDone }) {
       title: title.current.value,
       description: description.current.value,
       deadline: deadline.current.value,
-      image: selectedImage,
+      image: selectedImage
     };
 
     if (
@@ -58,13 +59,21 @@ export default function NewChallenge({ onDone }) {
 
         <ul id="new-challenge-images">
           {images.map((image) => (
-            <li
+            <motion.li
+              variants={{
+                hidden: { opacity: 0, scale: 0 },
+                visible: { opacity: 1, scale: 1 }
+              }}
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, scale: 0 }} // Explicit values instead of variant name
+              transition={{ type: "spring", duration: 0.5  }} // Add specific duration
               key={image.alt}
               onClick={() => handleSelectImage(image)}
-              className={selectedImage === image ? 'selected' : undefined}
+              className={selectedImage === image ? "selected" : undefined}
             >
               <img {...image} />
-            </li>
+            </motion.li>
           ))}
         </ul>
 
