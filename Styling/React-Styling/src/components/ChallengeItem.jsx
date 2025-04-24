@@ -29,7 +29,7 @@ export default function ChallengeItem({
   }
 
   return (
-    <li>
+    <motion.li layout exit={{ y: -40, opacity: 0 }}>
       <article className="challenge-item">
         <header>
           <img {...challenge.image} />
@@ -51,7 +51,6 @@ export default function ChallengeItem({
               <motion.span
                 animate={{
                   rotate: isExpanded ? 180 : 0
-                  
                 }}
                 className="challenge-item-details-icon"
               >
@@ -69,6 +68,6 @@ export default function ChallengeItem({
           )}
         </div>
       </article>
-    </li>
+    </motion.li>
   );
 }
