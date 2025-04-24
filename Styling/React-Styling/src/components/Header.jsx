@@ -26,6 +26,7 @@ export default function Header() {
           className="button"
           whileHover={{
             scale: 1.1,
+            
           }}
           transition={{ type: "spring", stiffness: 600, mass: 1 }}
         >
