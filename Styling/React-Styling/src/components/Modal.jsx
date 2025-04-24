@@ -13,6 +13,10 @@ export default function Modal({ title, children, onClose }) {
           opacity: 1,
           y: 0
         }}
+        exit={{
+          opacity: 0,
+          y: -30
+        }}
         open
         className="modal"
       >
