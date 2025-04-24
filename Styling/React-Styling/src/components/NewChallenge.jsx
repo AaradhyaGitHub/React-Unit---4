@@ -74,10 +74,10 @@ export default function NewChallenge({ onDone }) {
               key={image.alt}
               variants={{
                 hidden: { opacity: 0, scale: 0 },
-                visible: { opacity: 1, scale: 1 }
+                visible: { opacity: 1, scale: [0.8, 1.3, 1] }
               }}
               exit={{ opacity: 0, scale: 0 }}
-              transition={{ type: "spring" }}
+              transition={{ type: "tween", duration: 0.5 }}
               onClick={() => handleSelectImage(image)}
               className={selectedImage === image ? "selected" : undefined}
             >
