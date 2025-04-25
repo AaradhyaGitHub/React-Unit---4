@@ -262,4 +262,68 @@ function App() {
 export default App;
 ```
 
+Next place to optimize, currently in App.jsx, we have to use the same id for the title and the content, this can be optimized by setting the id on content item and it passes the id down to title and content
+
+Now, In AccordionItem, we can create a local Context and a custom hook:
+
+```jsx
+import { createContext, useContext } from "react";
+
+const AccordionItemContext = createContext();
+export function useAccordionItemContext() {
+  const ctx = useContext(AccordionItemContext);
+  if (!ctx) {
+    throw new Error(
+      "Accordion Item related components must be wrapped by <Accordion.Item>"
+    );
+  }
+  return ctx;
+}
+export default function AccordionItem({ id, className, children }) {
+  return (
+    <AccordionItemContext.Provider value={id}>
+      <li className={className}>{children}</li>
+    </AccordionItemContext.Provider>
+  );
+}
+```
+
+Then, we can modify the content and title files to adjust to the context:
+
+```jsx
+import { useAccordionContext } from "./Accordion";
+import { useAccordionItemContext } from "./AccordionItem";
+
+export default function AccordionTitle({ children, className }) {
+  const { toggleItem } = useAccordionContext();
+  const id = useAccordionItemContext();
+  return (
+    <h3 className={className} onClick={() => toggleItem(id)}>
+      {children}
+    </h3>
+  );
+}
+```
+
+and
+
+```jsx
+import { useAccordionContext } from "./Accordion";
+import { useAccordionItemContext } from "./AccordionItem";
+
+export default function AccordionContent({ children, className }) {
+  const { openItemId } = useAccordionContext();
+  const id = useAccordionItemContext();
+  const isOpen = openItemId === id;
+  return (
+    <div
+      className={
+        isOpen ? `${className ?? ""} open` : `${className ?? ""} close`
+      }
+    >
+      {children}
+    </div>
+  );
+}
+```
 
