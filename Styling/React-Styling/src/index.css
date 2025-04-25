@@ -38,8 +38,14 @@ body {
   color: #84b0fc;
 }
 
+/* Fixed hero positioning and parallax effect */
 #welcome-header {
   height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #city-image {
@@ -49,23 +55,84 @@ body {
   top: 0;
   left: 0;
   object-fit: cover;
+  z-index: 0;
+}
+
+#welcome-header-content {
+  width: 90%;
+  max-width: 40rem;
+  position: absolute;
+  top: 30%;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+#welcome-header-content h1 {
+  font-size: 3.5rem;
+  color: #fff;
+  margin-bottom: 2rem;
 }
 
 #hero-image {
-  width: 20rem;
-  max-width: 40%;
+  width: 25rem;
+  max-width: 50%;
   position: absolute;
-  bottom: 10%;
-  left: 25%;
-  object-fit: cover;
-  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
+  bottom: 0;
+  z-index: 1;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+  /* Center horizontally */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#cta-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #0f61ef;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#cta-link:hover {
+  background-color: #0f86ef;
+  transform: translateY(-2px);
+}
+
+#welcome-content {
+  padding-top: 2rem;
+}
+
+/* Make text more readable in dark theme */
+#welcome-content p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #welcome-header-content h1 {
+    font-size: 2.5rem;
+  }
+
+  #hero-image {
+    width: 15rem;
+  }
 }
 
 #welcome-header-content {
   width: 40rem;
+  max-width: 90%;
   position: absolute;
   top: 30%;
-  left: calc(50% - 20rem);
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
   text-align: center;

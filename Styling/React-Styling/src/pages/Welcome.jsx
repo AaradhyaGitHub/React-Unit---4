@@ -1,24 +1,76 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-import cityImg from '../assets/city.jpg';
-import heroImg from '../assets/hero.png';
+import cityImg from "../assets/city.jpg";
+import heroImg from "../assets/hero.png";
 
 export default function WelcomePage() {
+  const { scrollYProgress } = useScroll();
+
+  // Using scrollYProgress instead of scrollY for better responsive behavior
+  const yCity = useTransform(scrollYProgress, [0, 0.3], [0, -50]);
+  const opacityCity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.45, 0.6],
+    [1, 0.8, 0.5, 0]
+  );
+
+  const yHero = useTransform(scrollYProgress, [0, 0.3], [0, -100]);
+  const opacityHero = useTransform(
+    scrollYProgress,
+    [0, 0.45, 0.6],
+    [1, 0.8, 0]
+  );
+
+  const yText = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.45, 0.6],
+    [0, 30, 60, 200]
+  );
+  const scaleText = useTransform(scrollYProgress, [0, 0.45], [1, 1.3]);
+
   return (
     <>
       <header id="welcome-header">
-        <div id="welcome-header-content">
+        <motion.img
+          style={{
+            opacity: opacityCity,
+            y: yCity
+          }}
+          src={cityImg}
+          alt="A city skyline touched by sunlight"
+          id="city-image"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        />
+        <motion.div
+          id="welcome-header-content"
+          style={{
+            scale: scaleText,
+            y: yText
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <h1>Ready for a challenge?</h1>
           <Link id="cta-link" to="/challenges">
             Get Started
           </Link>
-        </div>
-        <img
-          src={cityImg}
-          alt="A city skyline touched by sunlight"
-          id="city-image"
+        </motion.div>
+        <motion.img
+          style={{
+            y: yHero,
+            opacity: opacityHero
+          }}
+          src={heroImg}
+          alt="A superhero wearing a cape"
+          id="hero-image"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         />
-        <img src={heroImg} alt="A superhero wearing a cape" id="hero-image" />
       </header>
       <main id="welcome-content">
         <section>
@@ -56,11 +108,10 @@ export default function WelcomePage() {
         <section>
           <h2>Join Thousands Embracing The Challenge</h2>
           <p>
-            “I never realized what I was capable of until I set my first
-            challenge here. It&apos;s been a transformative experience!” - Alex
+            "I never realized what I was capable of until I set my first
+            challenge here. It&apos;s been a transformative experience!" - Alex
             P.
           </p>
-          {/* You can add more testimonials or even a carousel for multiple testimonials */}
         </section>
       </main>
     </>
