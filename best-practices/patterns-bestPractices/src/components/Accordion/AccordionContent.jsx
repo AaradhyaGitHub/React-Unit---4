@@ -16,3 +16,4 @@ export default function AccordionContent({ children, className }) {
     </div>
   );
 }
+
