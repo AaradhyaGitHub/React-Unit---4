@@ -6,10 +6,8 @@ import { toggleFav } from "../../store/actions/products";
 import { ProductsContext } from "../../context/products-context";
 
 const ProductItem = (props) => {
-  const toggleFav = useContext(ProductsContext).toggleFav;
-
   const toggleFavHandler = () => {
-    toggleFav(props.id);
+    // toggleFav(props.id);
   };
 
   return (
