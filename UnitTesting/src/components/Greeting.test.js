@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Greeting from "./Greeting";
 
 // The three A's of testing:
@@ -8,7 +9,7 @@ import Greeting from "./Greeting";
 // Assert: Compare execution results with expected results
 
 describe("Greeting Component", () => {
-  test("Renders hello world as a text", () => {
+  test("renders hello world as a text", () => {
     //Arrannge:
     render(<Greeting />);
 
@@ -22,6 +23,48 @@ describe("Greeting Component", () => {
     // get functions -> throws error, query functions don't do that
     // find functions -> returns a promise
   });
+
+  test("renders Good to see ya mate if button was not clicked", () => {
+    //Arrannge:
+    render(<Greeting />);
+
+    //Act:
+    //....nothing here
+
+    //Assert
+    const paragraphElement = screen.getByText("Good to see ya mate", {
+      exact: false
+    });
+    expect(paragraphElement).toBeInTheDocument();
+  });
+
+  test("render Howdy señor! if button was clicked", () => {
+    // Arrange
+    render(<Greeting />);
+
+    //Act:
+    //Click the button
+    const buttonElement = screen.getByRole("button");
+    userEvent.click(buttonElement);
+
+    //Assert:
+    const updatedParagraphElement = screen.getByText("Howdy señor!");
+    expect(updatedParagraphElement).toBeInTheDocument();
+  });
+
+  test('does not render "good to see you" if the button was clicked', () => {
+    //Arrange
+    render(<Greeting />);
+
+    //Act:
+    //Click the button
+    const buttonElement = screen.getByRole("button");
+    userEvent.click(buttonElement);
+
+    //Assert:
+    const updatedParagraphElement = screen.queryByText("Good to see ya mate", {
+      exact: false
+    });
+    expect(updatedParagraphElement).toBeNull();
+  });
 });
-
-
