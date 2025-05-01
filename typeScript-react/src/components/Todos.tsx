@@ -1,8 +1,10 @@
-export default function(){
-    return(
+const Todos: React.FC<{items: string[]}> = (props) => {
+    return (
         <ul>
-            <li>Learn React</li>
-            <li>Practice Leetcode</li>
+            {
+                props.items.map(item => <li key={item}>{item}</li>)
+            }
         </ul>
     )
 }
+export default Todos;
