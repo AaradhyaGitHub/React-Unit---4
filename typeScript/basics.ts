@@ -46,3 +46,38 @@ let title = 'BJJ - The complete sport';
 let course: string | number = 'Armbar - Game of isolation'
 course = 1234;
 //this works
+
+
+//how to avoid dupliaction? 
+// Type Alias
+
+type Cars = {
+    brand: string, 
+    year: number, 
+    price: number
+}
+
+let corolla: Cars
+corolla = {
+    brand: 'Toyota',
+    year: 2025,
+    price: 23000
+}
+
+// function and types: 
+function addNum (a: number, b:number):number{
+    return a+b
+}
+
+//generics 
+function insertAtBeginning<T>(array: T[], value: T){
+    const newArray = [value, ...array];
+    return newArray
+}
+
+const demoArray = [1,2,3];
+const updatedArray = insertAtBeginning(demoArray, -1);
+
+const demoCarArray = ['toyota', 'tesla', 'ford'];
+const updatedCarArray = insertAtBeginning(demoCarArray, 'maserati')
+updatedArray[0].split('');
